@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "tailwindcss";
+
+/* ------------------------ */
+/* 🎨 Custom CSS Tailwind */
+/* ------------------------ */
+
+:root {
+    --font-sans: "Sarabun", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ตัวอย่างการเพิ่มสี, ปรับฟอนต์, หรือ override ค่า default */
+
+body {
+    font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 700;
+    color: theme("colors.gray.800");
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    @apply w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.btn {
+    @apply inline-flex items-center justify-center font-bold py-2 px-4 rounded-lg transition duration-200;
+}
+
+.btn-primary-gradient {
+    @apply bg-gradient-to-r from-lime-500 to-green-600 text-white hover:from-lime-600 hover:to-green-700;
+}
+
+.btn-danger-gradient {
+    @apply bg-gradient-to-r from-red-500 to-pink-500 text-white hover:from-red-600 hover:to-pink-600;
+}
+
+.btn-hover-effect {
+    @apply hover:scale-105 transform transition-transform duration-200;
+}
+
+.text-danger {
+    @apply text-red-600;
+}
+
+.alert-custom {
+    @apply bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6 rounded-md text-sm flex items-center gap-2;
+}
