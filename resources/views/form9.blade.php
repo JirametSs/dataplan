@@ -19,9 +19,6 @@
 <!-- Tailwind CSS -->
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-<!-- Form CSS -->
-<link rel="stylesheet" href="{{ asset('css/form.css') }}" />
-
 <!-- Table Tabulator -->
 <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
 
@@ -85,9 +82,11 @@ $projectId = $plan->project_id ?? null;
 </div>
 @endif
 
-<div class="alert-custom">
-    <i class="fa-solid fa-circle-info me-1"></i>
-    <strong class="text-danger">*</strong> หลังข้อ หมายถึงให้ใส่รายละเอียดข้อมูลด้วย และกรุณาบันทึกข้อมูลด้านล่างก่อนทุกครั้งเมื่อมีการแก้ไขหรือบันทึกข้อมูลเพิ่มเติม
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <div class="alert-custom">
+        <i class="fa-solid fa-circle-info me-1"></i>
+        <strong class="text-danger">*</strong> หลังข้อ หมายถึงให้ใส่รายละเอียดข้อมูลด้วย และกรุณาบันทึกข้อมูลด้านล่างก่อนทุกครั้งเมื่อมีการแก้ไขหรือบันทึกข้อมูลเพิ่มเติม
+    </div>
 </div>
 
 @if ($errors->any())
@@ -108,19 +107,18 @@ $projectId = $plan->project_id ?? null;
 </div>
 @endif
 
-<button class="side-btn-open btn border-0 shadow-sm bg-white rounded-circle"
-    type="button"
-    onclick="btn_open()"
-    style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; transition: background-color 0.3s;">
-    <i class="fa-solid fa-bars text-secondary"></i>
+<button class="side-btn-open-minimal" type="button" onclick="btn_open()">
+    <i class="fa-solid fa-bars"></i>
 </button>
 
-
 <div class="d-flex justify-content-center align-items-start py-5" style="min-height: 100vh;">
-    <div class="container" style="max-width: 1250px;margin-right:10000px;margin-left:150px;">
+    <div class="container">
         <div class="card shadow">
-            <div class="card-header bg-warning text-white">
-            </div>
+            <center>
+                <div class="card-header bg-warning text-green-800">
+                    <h4 class="mb-0">ผลกระทบที่คาดว่าจะได้รับ</h4>
+                </div>
+            </center>
 
             <form action="{{ isset($plan) ? route('form9.update', $plan->project_id) : route('form9.store') }}" method="POST">
                 @csrf
@@ -131,7 +129,7 @@ $projectId = $plan->project_id ?? null;
 
                     {{-- หัวข้อ 22 --}}
                     <div class="mb-5">
-                        <label for="impact" class="form-label fw-bold text-primary required" style="font-size: 18px;">
+                        <label for="impact" class="form-label fw-bold text-primary required" style="font-size: 14px;">
                             22. ผลกระทบ (Impact) ทั้งด้านบวกและด้านลบที่คาดว่าจะได้รับจากระบบงาน/โครงการนี้
                         </label><br>
                         <textarea name="impact" id="impact" rows="6"
@@ -140,21 +138,21 @@ $projectId = $plan->project_id ?? null;
                     </div>
 
                     <!-- ข้อ 23 -->
-                    <label for="tb_period" class="form-label fw-bold text-primary required" style="font-size: 18px;">
+                    <label for="tb_period" class="form-label fw-bold text-primary required" style="font-size: 14px;">
                         23. การประเมินผลและระยะเวลาของการประเมินโครงการ
                     </label><br>
 
                     <div class="form-check form-check-inline mt-2">
                         <input class="form-check-input" type="radio" name="tb_period" id="period6m" value="6 เดือน"
                             {{ old('tb_period', $tb_period ?? '') == '6 เดือน' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="period6m">6 เดือน</label>
+                        <label class="form-check-label" for="period6m" style="font-size: 14px;">6 เดือน</label>
 
                     </div>
 
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="tb_period" id="period1y" value="1 ปี"
                             {{ old('tb_period', $tb_period ?? '') == '1 ปี' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="period1y">1 ปี</label>
+                        <label class="form-check-label" for="period1y" style="font-size: 14px;">1 ปี</label>
                     </div>
                 </div>
 

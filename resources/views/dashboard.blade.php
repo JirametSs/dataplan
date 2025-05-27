@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 @extends('layouts.main')
 
 @section('title', 'แดชบอร์ดโครงการ')
@@ -26,26 +28,11 @@
 
 @section('content')
 
-<div class="min-h-screen px-4 py-8" style="margin-right:250px">
+<div class="min-h-screen px-4 py-8" style="margin-left: -70px;">
     <div class="max-w-7xl mx-auto">
         <!-- Header with breadcrumb -->
-        <div class="mb-6">
-            <nav class="flex mb-4" aria-label="Breadcrumb">
-                <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-                    <li class="inline-flex items-center">
-                        <a href="{{ url('/form1') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
-                            <i class="fas fa-home mr-2"></i>
-                            หน้าหลัก
-                        </a>
-                    </li>
-                    <li aria-current="page">
-                        <div class="flex items-center">
-                            <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
-                            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2">แดชบอร์ดโครงการ</span>
-                        </div>
-                    </li>
-                </ol>
-            </nav>
+        <div class="mb-6"><br>
+
 
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
@@ -74,38 +61,24 @@
                 </div>
             </div>
 
+            <?php
+            date_default_timezone_set("Asia/Bangkok");
+            ?>
+
+            <!--  Card วันเวลาปัจจุบัน (แก้ไขแล้ว) -->
             <div class="bg-white rounded-lg shadow p-4 border-l-4 border-green-500">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-medium text-gray-500">โครงการที่ดำเนินการ</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">{{ $projects->where('flag', 1)->count() }}</p>
+                        <p class="text-sm font-medium text-gray-500">วันเวลาปัจจุบัน</p>
+                        <p class="text-2xl font-bold text-gray-800 mt-1">
+                            {{ \Carbon\Carbon::now()->locale('th')->translatedFormat('j F Y') }}
+                        </p>
+                        <p class="text-sm text-gray-600">
+                            {{ \Carbon\Carbon::now()->locale('th')->translatedFormat('l, H:i น.') }}
+                        </p>
                     </div>
                     <div class="bg-green-100 p-3 rounded-full">
-                        <i class="fas fa-spinner text-green-600 text-xl"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow p-4 border-l-4 border-yellow-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-500">ส่งกลับเพื่อแก้ไข</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">{{ $projects->where('flag', 9)->count() }}</p>
-                    </div>
-                    <div class="bg-yellow-100 p-3 rounded-full">
-                        <i class="fas fa-exclamation-circle text-yellow-600 text-xl"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow p-4 border-l-4 border-gray-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-500">รอดำเนินการ</p>
-                        <p class="text-2xl font-bold text-gray-800 mt-1">{{ $projects->where('flag', 0)->count() }}</p>
-                    </div>
-                    <div class="bg-gray-100 p-3 rounded-full">
-                        <i class="fas fa-clock text-gray-600 text-xl"></i>
+                        <i class="fas fa-calendar-alt text-green-600 text-xl"></i>
                     </div>
                 </div>
             </div>
@@ -167,9 +140,11 @@
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10 mr-3">
                                     <div class="h-full w-full rounded-md bg-blue-100 flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#3b82f6" class="size-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" />
+                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd" d="M7 2a2 2 0 0 0-2 2v1a1 1 0 0 0 0 2v1a1 1 0 0 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H7Zm3 8a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm-1 7a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3 1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1Z" clip-rule="evenodd" />
                                         </svg>
+
+
 
                                     </div>
                                 </div>
@@ -245,7 +220,7 @@
                                 </button>
 
                                 {{-- ปุ่ม PDF  --}}
-                                <button type="button"
+                                <!-- <button type="button"
                                     onclick="window.open('{{ route('project.pdf', $project->project_id) }}')"
                                     class="action-btn bg-red-100 text-red-600 hover:bg-red-200"
                                     title="เปิดไฟล์ PDF">
@@ -262,7 +237,7 @@
                                             .621.504 1.125 1.125 1.125h12.75c.621 0
                                             1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                                     </svg>
-                                </button>
+                                </button> -->
                             </div>
                         </td>
                     </tr>
@@ -271,25 +246,28 @@
             </table>
         </div>
 
-        <!-- Table Footer -->
-        <div class="p-4 border-t border-gray-200 bg-gray-50">
+        <!-- Table Footer
+        <div class="p-4 border-t border-gray-200 bg-gray-50" id="manual-pagination">
             <div class="flex flex-col md:flex-row items-center justify-between text-sm text-gray-500">
-                <div class="mb-2 md:mb-0">
-                    แสดง <span class="font-semibold text-gray-900">1</span> ถึง <span class="font-semibold text-gray-900">10</span> จาก <span class="font-semibold text-gray-900">{{ count($projects) }}</span> โครงการ
+                <div class="mb-2 md:mb-0" id="pagination-info">
+                    แสดง <span class="font-semibold text-gray-900" id="start-record">1</span>
+                    ถึง <span class="font-semibold text-gray-900" id="end-record">10</span>
+                    จาก <span class="font-semibold text-gray-900" id="total-records">{{ count($projects) }}</span> โครงการ
                 </div>
-                <div class="inline-flex gap-1">
-                    <button class="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-gray-100">
+                <div class="inline-flex gap-1" id="pagination-buttons">
+                    <button id="prev-btn" class="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-gray-100 disabled:opacity-50" disabled>
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button class="px-3 py-1 rounded-md bg-blue-600 text-white">1</button>
-                    <button class="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-gray-100">2</button>
-                    <button class="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-gray-100">3</button>
-                    <button class="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-gray-100">
+                    <button class="px-3 py-1 rounded-md bg-blue-600 text-white page-btn active" data-page="1">1</button>
+                    <button class="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-gray-100 page-btn" data-page="2">2</button>
+                    <button class="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-gray-100 page-btn" data-page="3">3</button>
+                    <button id="next-btn" class="px-3 py-1 rounded-md bg-white border border-gray-300 text-gray-500 hover:bg-gray-100">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
+
     </div>
 </div>
 </div>

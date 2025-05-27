@@ -19,9 +19,6 @@
 <!-- Tailwind CSS -->
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-<!-- Form CSS -->
-<link rel="stylesheet" href="{{ asset('css/form.css') }}" />
-
 <!-- Table Tabulator -->
 <link href="https://unpkg.com/tabulator-tables@6.3.1/dist/css/tabulator.min.css" rel="stylesheet">
 
@@ -86,11 +83,12 @@ $projectId = $plan->project_id ?? null;
 </div>
 @endif
 
-<div class="alert-custom">
-    <i class="fa-solid fa-circle-info me-1"></i>
-    <strong class="text-danger">*</strong> หลังข้อ หมายถึงให้ใส่รายละเอียดข้อมูลด้วย และกรุณาบันทึกข้อมูลด้านล่างก่อนทุกครั้งเมื่อมีการแก้ไขหรือบันทึกข้อมูลเพิ่มเติม
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <div class="alert-custom">
+        <i class="fa-solid fa-circle-info me-1"></i>
+        <strong class="text-danger">*</strong> หลังข้อ หมายถึงให้ใส่รายละเอียดข้อมูลด้วย และกรุณาบันทึกข้อมูลด้านล่างก่อนทุกครั้งเมื่อมีการแก้ไขหรือบันทึกข้อมูลเพิ่มเติม
+    </div>
 </div>
-
 @if ($errors->any())
 <div class="flex justify-center mt-5">
     <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" style="margin-right: 300px;">
@@ -109,20 +107,20 @@ $projectId = $plan->project_id ?? null;
 </div>
 @endif
 
-<button class="side-btn-open btn border-0 shadow-sm bg-white rounded-circle"
-    type="button"
-    onclick="btn_open()"
-    style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; transition: background-color 0.3s;">
-    <i class="fa-solid fa-bars text-secondary"></i>
+<button class="side-btn-open-minimal" type="button" onclick="btn_open()">
+    <i class="fa-solid fa-bars"></i>
 </button>
 
 
-<div class="d-flex justify-content-center align-items-start py-5" style="min-height: 100vh;">
-    <div class="container" style="max-width: 1250px;margin-right:10000px;margin-left:150px;">
-        <div class="card shadow">
-            <div class="card-header bg-warning text-white">
-            </div>
 
+<div class="d-flex justify-content-center align-items-start py-5" style="min-height: 100vh;">
+    <div class="container">
+        <div class="card shadow">
+            <center>
+                <div class="card-header bg-warning text-green-800">
+                    <h4 class="mb-0">ความสอดคล้องกับ okr</h4>
+                </div>
+            </center>
             <form action="{{ isset($plan) ? route('form2.update', $plan->project_id) : route('form2.store') }}" method="POST">
                 @csrf
                 @if(isset($plan))
@@ -143,7 +141,7 @@ $projectId = $plan->project_id ?? null;
                         @foreach($okrs as $okr)
                         <div class="mb-4">
                             {{-- ชื่อหัวข้อ OKR --}}
-                            <div class="fw-semibold text-dark mb-2">
+                            <div class="fw-semibold text-dark mb-2" style="font-size: 14px;">
                                 <b>{{ $okr->name }}</b>
                             </div>
 
@@ -163,7 +161,7 @@ $projectId = $plan->project_id ?? null;
                                             value="{{ $subokr->id }}"
                                             class="form-check-input"
                                             {{ in_array($subokr->id, old('subokrs', $selectedSubokrs ?? [])) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="subokr{{ $subokr->id }}">
+                                        <label class="form-check-label" for="subokr{{ $subokr->id }}" style="font-size: 14px;">
                                             {{ $subokr->name }}
                                             <span class="text-muted">(เป้าหมาย: {{ $subokr->target_name }})</span>
                                         </label>
@@ -200,8 +198,9 @@ $projectId = $plan->project_id ?? null;
 
 <!-- Custom Script -->
 <script src="{{ asset('js/custom.js') }}"></script>
-<script src="{{ asset('js/helper.js') }}"></script>
 <script src="{{ asset('js/alert.js') }}"></script>
 <script src="{{ asset('js/submit.js') }}"></script>
+
+
 
 @endsection

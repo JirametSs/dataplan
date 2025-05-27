@@ -1,11 +1,5 @@
-@tailwind base;
-@tailwind components;
 @tailwind utilities;
 @import "tailwindcss";
-
-/* ------------------------ */
-/* 🎨 Custom CSS Tailwind */
-/* ------------------------ */
 
 :root {
     --font-sans: "Sarabun", ui-sans-serif, system-ui, sans-serif;
@@ -58,4 +52,98 @@ textarea {
 
 .alert-custom {
     @apply bg-yellow-50 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6 rounded-md text-sm flex items-center gap-2;
+}
+
+@layer utilities {
+    /* ปรับกล่อง input พิเศษให้ขนาดเล็กลง */
+    .input-tight {
+        @apply px-3 py-2 text-sm rounded-md border border-gray-300 focus:ring-2 focus:ring-lime-500 focus:border-lime-500;
+    }
+
+    /* ปุ่มบันทึก / ล้าง ให้บาลานซ์ขึ้น */
+    .btn-rounded-xl {
+        @apply px-6 py-2 text-base font-semibold rounded-full transition duration-200 ease-in-out;
+    }
+
+    /* กล่อง form กลาง */
+    .form-card {
+        @apply bg-white shadow-md rounded-xl p-6;
+    }
+
+    /* Label สำหรับหัวข้อ */
+    .form-label-title {
+        @apply text-lg font-semibold text-gray-700 mb-1;
+    }
+
+    /* กล่อง alert info */
+    .alert-yellow {
+        @apply bg-yellow-50 text-yellow-800 border-l-4 border-yellow-500 px-4 py-3 rounded-md text-sm mb-4 flex items-center gap-2;
+    }
+
+    /* ปรับปุ่ม Step ให้เล็กลงนิด */
+    .step {
+        @apply px-4 py-2 text-sm font-medium rounded-lg border-2 border-gray-300 shadow-sm transition-all;
+    }
+
+    .step.active {
+        @apply bg-green-700 text-white border-green-700 shadow-md;
+    }
+
+    .step.completed {
+        @apply bg-green-400 text-white border-green-400;
+    }
+
+    /* ปรับขนาด .full-width-input ถ้ามี */
+    .full-width-input {
+        @apply w-full max-w-3xl text-base px-4 py-2 border border-gray-300 rounded-md;
+    }
+
+    /* ปุ่ม edit */
+    .btn-edit-custom {
+        @apply bg-yellow-400 text-black px-6 py-2 rounded-full font-bold shadow-md hover:bg-yellow-500 transition;
+    }
+
+    /* Select2 override */
+    .select2-container .select2-selection {
+        @apply rounded-lg border border-gray-300 py-2 px-3 text-sm;
+    }
+
+    .select2-container--default
+        .select2-selection--single
+        .select2-selection__arrow {
+        top: 10px !important;
+    }
+    .card-body-custom {
+        @apply bg-white text-gray-800 rounded-xl shadow-sm px-8 py-6 space-y-6;
+        /* px: padding left-right, py: top-bottom, space-y: ระยะระหว่างหัวข้อ */
+    }
+
+    .card-body-custom h2 {
+        @apply text-2xl font-semibold text-gray-700 mb-4;
+    }
+
+    .card-body-custom label {
+        @apply block font-semibold text-gray-700 mb-1;
+    }
+
+    .card-body-custom input[type="text"],
+    .card-body-custom input[type="email"],
+    .card-body-custom input[type="number"],
+    .card-body-custom input[type="date"],
+    .card-body-custom select,
+    .card-body-custom textarea {
+        @apply w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500;
+    }
+
+    .card-body-custom .form-group {
+        @apply mb-5;
+    }
+
+    .card-body-custom .form-note {
+        @apply text-xs text-gray-500 italic;
+    }
+
+    .card-body-custom .form-buttons {
+        @apply flex flex-wrap justify-center gap-4 pt-6;
+    }
 }
